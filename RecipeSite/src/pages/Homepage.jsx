@@ -20,9 +20,13 @@ function Homepage(){
   return(
     <div style={{border:"2px solid blue"}}>
       <h2>Recipe Categories</h2>
-      <div>
-        {categories.map((category) => (<div key={category.idCategory}>
-          <Link to={`/category/${category.strCategory}`}>{category.strCategory}</Link>
+      <div id="categoryMenu" style={{display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:"20px"}}>
+          {categories.map((category) => (<div key={category.idCategory}>
+          <Link key={category.idCategory} to={`/category/${category.strCategory}`}>
+          <div id="individualCategory" style={{border:"1px solid pink",padding:"4px"}}>
+            <img src={category.strCategoryThumb} alt={category.strCategory} style={{ width: "100%" }} />
+            <h3>{category.strCategory}</h3>
+            </div></Link>
           </div>))}
       </div>
     </div>
@@ -30,3 +34,7 @@ function Homepage(){
 }
 
 export default Homepage
+
+
+
+// <p>{category.strCategoryDescription}</p>
