@@ -5,10 +5,12 @@ import { useState } from 'react';
 
 
 function Navbar(){
+
   const [query,setQuery] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
+    console.log("Clicked")
 
     e.preventDefault();
     if(!query.trim()) {
@@ -24,7 +26,7 @@ function Navbar(){
   return(
     <nav id="Nav" style={{border:"2px solid red"}}>
       <ul style={{listStyle:"none"}}>
-        <li><Link to="/homepage">Home</Link></li>
+        <li><Link to="/">Home</Link></li>
         {"|"}
         <li><Link to="/favorites">Favorites☆</Link></li>
         {"|"}
