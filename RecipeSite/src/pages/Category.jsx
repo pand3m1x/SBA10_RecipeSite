@@ -9,10 +9,8 @@ function Category(){
 
   const [meals,setMeals] = useState([]);
 
-  // const Meal = () => {
   const {categoryName} = useParams(); //categoryName matches category url
-  // return <h2>{ categoryName } Meals: </h2>
-  // }
+
   console.log(categoryName);
 
     useEffect(() => {
@@ -28,8 +26,7 @@ function Category(){
   return(
     <>
       <div style={{border:"2px solid blue"}}>
-      <h2>{categoryName} Recipe</h2>
-      {/* <p>{category.strCategoryDescription}</p> */}
+      <h2>{categoryName} Recipes</h2>
       <div id="mealsMenu" style={{display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:"20px"}}>
           {meals.map((meal) => (<div key={meal.idMeal}>
           <Link to={`/recipe/${meal.strMeal}`}>

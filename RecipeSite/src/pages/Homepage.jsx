@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect,useState } from 'react';
-import { Link,useNavigate,useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import Category from './Category'
 
 function Homepage(){
@@ -17,12 +17,6 @@ function Homepage(){
       })
       .catch((err) => console.error(err));
     }, []);
-
-    // const navigate = useNavigate();
-
-    // const goToCategory = () => { // got to clicked category //not what I need lol
-    //   navigate('https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood')
-    // }
 
   return(
     <div style={{border:"2px solid blue"}}>
