@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect,useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 // import Category from './Category'
 
 function Homepage(){
@@ -17,13 +17,19 @@ function Homepage(){
       .catch((err) => console.error(err));
     }, []);
 
+    const navigate = useNavigate();
+
+    const goToCategory = () => { // got to clicked category
+      navigate('https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood')
+    }
+
   return(
     <div style={{border:"2px solid blue"}}>
       <h2>Recipe Categories</h2>
       <div id="categoryMenu" style={{display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:"20px"}}>
           {categories.map((category) => (<div key={category.idCategory}>
-          <Link key={category.idCategory} to={`/category/${category.strCategory}`}>
-          <div id="individualCategory" style={{border:"1px solid pink",padding:"4px"}}>
+          <Link to={`/category/${category.strCategory}`}>
+          <div id="individualCategory" style={{border:"1px solid pink",padding:"4px"}} onClick={goToCategory}>
             <img src={category.strCategoryThumb} alt={category.strCategory} style={{ width: "100%" }} />
             <h3>{category.strCategory}</h3>
             </div></Link>

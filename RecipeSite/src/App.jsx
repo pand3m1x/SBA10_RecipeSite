@@ -5,9 +5,10 @@ import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
 // import Favorites from '.pages/Favorites';
 // import Categories from '.pages/Categories';
+// /category/[categoryName]
 // import Recipe from '.pages/Recipe';
+// /recipe/[recipeId]
 // import Search from './pages/Search'
-
 
 function App() {
   const Favorites = () => <h2>Favorites</h2>;  
@@ -21,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/favorites" element={<Favorites />}></Route>
-        <Route path="/category/[categoryName]" element={<Category />}></Route>
+        <Route path="/category/:categoryName" element={<Category />}></Route>
         <Route path="/recipe/[recipeId]" element={<Recipe />}></Route>
         <Route path="/search" element={<Search />}></Route>
       </Routes>
