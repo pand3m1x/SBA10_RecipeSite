@@ -1,5 +1,6 @@
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router';
+import RecipeCard from '../components/RecipeCard'
 
 
 function Recipe(){
@@ -22,7 +23,8 @@ function Recipe(){
   return( 
   <>
     <div style={{border:"2px solid lightBlue"}}>
-      <h2>{recipe.strMeal}</h2>
+      <h2>How to make {recipe.strMeal}</h2>
+      <RecipeCard></RecipeCard>
     </div>
   </>
   );
