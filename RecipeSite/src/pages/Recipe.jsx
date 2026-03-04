@@ -20,6 +20,7 @@ function Recipe(){
       .catch((err) => console.error(err));
     }, [recipeId]);
     
+     if (!recipeId) return <p>Loading Meals</p>;
   return( 
   <>
     <div style={{border:"2px solid lightBlue"}}>

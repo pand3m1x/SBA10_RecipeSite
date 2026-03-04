@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 
 function RecipeCard(){
 
-  const [ recipeInfo, setRecipeInfo ] =useState([]);
+  const [ recipeInfo, setRecipeInfo ] =useState(null);
   const { recipeId } = useParams();
 
    useEffect(() => {
@@ -19,11 +19,11 @@ function RecipeCard(){
     if (!recipeInfo) return <p>Loading Recipe</p>;
   return(
     <>
-      <div className="card">
+      <div className="card" style={{padding:"50px"}}>
         <img src={recipeInfo.strMealThumb} style={{ width:"200px", borderRadius:"10px"}} />
         <div id="categories">
-          <p>{recipeInfo.strCategory}</p>
-          <p>{recipeInfo.strArea}</p>
+          <p><i>{recipeInfo.strCategory}</i></p>
+          <p><i>{recipeInfo.strArea}</i></p>
         </div>
         <p>{recipeInfo.strInstructions}</p>
       </div>
