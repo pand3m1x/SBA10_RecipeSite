@@ -1,30 +1,28 @@
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router';
 
+
 function Recipe(){
 
-    const [recipe,setRecipe] = useState([]);
-    const {recipeId} = useParams(`/${idMeal}`);
-    console.log(recipeId);
+    const [ recipe,setRecipe ] = useState([]);
+    const { recipeId } = useParams();
+    
+    console.log("Recipe", recipeId);
 
     useEffect(() => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`) //"idMeal": "53147"
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`) //"idMeal": "53147"
       .then((res) => res.json())
       .then((data) => {
         console.log("API Data:", data);
-        setRecipe(data.recipe);
+        setRecipe(data.meals ? data.meals[0] : null);
       })
       .catch((err) => console.error(err));
-    }, []);
+    }, [recipeId]);
     
   return( 
   <>
     <div style={{border:"2px solid lightBlue"}}>
-      <h2>{recipe}</h2>
-      {/* <div id="recipe" style={{}}>
-          {meals.map((meal) => (<div key={meal.idMeal}>
-          </div>))}
-      </div> */}
+      <h2>{recipe.strMeal}</h2>
     </div>
   </>
   );

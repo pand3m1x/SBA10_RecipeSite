@@ -1,9 +1,10 @@
 // import { useState } from 'react'
 import './App.css';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
-import Category from './pages/Category'
+import Category from './pages/Category';
+import Recipe from './pages/Recipe'
 // import Favorites from '.pages/Favorites';
 // import Categories from '.pages/Categories';
 // /category/[categoryName]
@@ -16,7 +17,7 @@ function App() {
   
   // const Category = () => <h2>Meals</h2>;
 
-  const Recipe = () => <h2>Recipe</h2>;
+  // const Recipe = () => <h2>Recipe</h2>;
   const Search = () => <h2>Search</h2>;
 
   return (

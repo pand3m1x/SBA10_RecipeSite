@@ -2,7 +2,7 @@
 // https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood
 
 import { useEffect,useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function Category(){
@@ -11,7 +11,9 @@ function Category(){
 
   const {categoryName} = useParams(); //categoryName matches category url
 
-  console.log(categoryName);
+  console.log(meals);
+
+    // if (!categoryName) return;
 
     useEffect(() => {
       fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`)
@@ -23,13 +25,14 @@ function Category(){
         .catch((err) => console.error(err));
       }, []);
 
+      // if (!categoryName) return <h2>Loading...</h2>; 
   return(
     <>
       <div style={{border:"2px solid blue"}}>
       <h2>{categoryName} Recipes</h2>
       <div id="mealsMenu" style={{display:"grid", gridTemplateColumns:"repeat(3, 1fr)", gap:"20px"}}>
           {meals.map((meal) => (<div key={meal.idMeal}>
-          <Link to={`/recipe/${meal.strMeal}`}>
+          <Link to={`/recipe/${meal.idMeal}`}>
           <div id="individualCategory" style={{border:"1px solid pink",padding:"4px"}}>
             <img src={meal.strMealThumb} alt={meal.strMeal} style={{ width: "100%" }} />
             <h3>{meal.strMeal}</h3>
