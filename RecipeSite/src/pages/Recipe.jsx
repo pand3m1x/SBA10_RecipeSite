@@ -1,11 +1,12 @@
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router';
 import RecipeCard from '../components/RecipeCard'
+import Spinner from '../components/Spinner';
 
 
 function Recipe(){
 
-    const [ recipe,setRecipe ] = useState();
+    const [ recipe,setRecipe ] = useState([]);
     const { recipeId } = useParams();
     
     console.log("Recipe:", recipeId);
@@ -20,7 +21,7 @@ function Recipe(){
       .catch((err) => console.error(err));
     }, [recipeId]);
     
-     if (!recipe) return <p>Loading Meals</p>; //this won't work?
+     if (recipe.length === 0) return <Spinner />; //this won't work?
 
   return( 
   <>

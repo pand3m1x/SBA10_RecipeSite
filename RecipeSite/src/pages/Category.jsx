@@ -4,16 +4,15 @@
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 
 function Category(){
 
   const [meals,setMeals] = useState([]);
-
   const {categoryName} = useParams(); //categoryName matches category url
 
-  console.log(meals);
+  console.log("Meals:", meals);
 
-    // if (!categoryName) return;
 
     useEffect(() => {
       fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`)
@@ -23,9 +22,9 @@ function Category(){
           setMeals(data.meals);
         })
         .catch((err) => console.error(err));
-      }, []);
+      }, [categoryName]);
 
-  
+      if (meals.length === 0) return <Spinner />;
 
   return(
     <>

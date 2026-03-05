@@ -4,7 +4,7 @@ import Spinner from './Spinner';
 
 function RecipeCard(){
 
-  const [ recipeInfo, setRecipeInfo ] =useState(null);
+  const [ recipeInfo, setRecipeInfo ] = useState([]);
   const { recipeId } = useParams();
 
    useEffect(() => {
@@ -17,7 +17,7 @@ function RecipeCard(){
       .catch((err) => console.error(err));
     }, [recipeId], 50000);
 
-    if (!recipeInfo) return <Spinner />; //this won't work?
+    if (recipeInfo.length === 0) return <Spinner />; //this won't work?
 
   return(
     <>

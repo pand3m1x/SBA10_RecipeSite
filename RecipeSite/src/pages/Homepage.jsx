@@ -1,6 +1,7 @@
 import { useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
 // import Category from './Category'
+import Spinner from '../components/Spinner';
 
 function Homepage(){
 
@@ -16,6 +17,8 @@ function Homepage(){
       })
       .catch((err) => console.error(err));
     }, []);
+
+    if (categories.length === 0) return <Spinner />;
 
   return(
     <div style={{border:"2px solid blue"}}>
