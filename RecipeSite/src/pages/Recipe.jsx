@@ -1,36 +1,45 @@
-import { useEffect,useState } from 'react';
-import { useParams } from 'react-router';
-import RecipeCard from '../components/RecipeCard'
-import Spinner from '../components/Spinner';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import RecipeCard from "../components/RecipeCard";
+import Spinner from "../components/Spinner";
 
+function Recipe() {
+  const [recipe, setRecipe] = useState([]);
+  const { recipeId } = useParams();
+  const [error, setError] = useState(false);
 
-function Recipe(){
+  console.log("Recipe:", recipeId);
 
-    const [ recipe,setRecipe ] = useState([]);
-    const { recipeId } = useParams();
-    
-    console.log("Recipe:", recipeId);
-
-    useEffect(() => {
+  useEffect(() => {
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`) //"idMeal": "53147"
       .then((res) => res.json())
       .then((data) => {
         console.log("API Data:", data);
+
+        if (!data.meals) {
+          setError(true);
+          return;
+        }
         setRecipe(data.meals ? data.meals[0] : null);
       })
-      .catch((err) => console.error(err));
-    }, [recipeId]);
-    
-     if (recipe.length === 0) return <Spinner />; //this won't work?
 
-  return( 
-  <>
-    <div style={{border:"2px solid lightBlue"}}>
-      <h2>How to make {recipe.strMeal}</h2>
-      <RecipeCard></RecipeCard>
-    </div>
-  </>
+      .catch((err) => {
+        console.error(err);
+        setError(true);
+      });
+  }, [recipeId]);
+
+  if (error) return <ErrorMessage />;
+  if (recipe.length === 0) return <Spinner />; //this won't work?
+
+  return (
+    <>
+      <div style={{ border: "2px solid lightBlue" }}>
+        <h2>How to make {recipe.strMeal}</h2>
+        <RecipeCard></RecipeCard>
+      </div>
+    </>
   );
 }
 
-export default Recipe
+export default Recipe;
