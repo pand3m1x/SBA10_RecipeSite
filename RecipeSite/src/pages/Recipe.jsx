@@ -5,10 +5,10 @@ import RecipeCard from '../components/RecipeCard'
 
 function Recipe(){
 
-    const [ recipe,setRecipe ] = useState([]);
+    const [ recipe,setRecipe ] = useState();
     const { recipeId } = useParams();
     
-    console.log("Recipe", recipeId);
+    console.log("Recipe:", recipeId);
 
     useEffect(() => {
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`) //"idMeal": "53147"
@@ -20,7 +20,8 @@ function Recipe(){
       .catch((err) => console.error(err));
     }, [recipeId]);
     
-     if (!recipeId) return <p>Loading Meals</p>;
+     if (!recipe) return <p>Loading Meals</p>; //this won't work?
+
   return( 
   <>
     <div style={{border:"2px solid lightBlue"}}>

@@ -1,5 +1,6 @@
 import { useEffect,useState } from 'react'
 import { useParams } from 'react-router';
+import Spinner from './Spinner';
 
 function RecipeCard(){
 
@@ -14,9 +15,10 @@ function RecipeCard(){
         setRecipeInfo(data.meals ? data.meals[0] : null);
       })
       .catch((err) => console.error(err));
-    }, [recipeId]);
+    }, [recipeId], 50000);
 
-    if (!recipeInfo) return <p>Loading Recipe</p>;
+    if (!recipeInfo) return <Spinner />; //this won't work?
+
   return(
     <>
       <div className="card" style={{padding:"50px"}}>

@@ -25,7 +25,8 @@ function Category(){
         .catch((err) => console.error(err));
       }, []);
 
-      // if (!categoryName) return <h2>Loading...</h2>; 
+  
+
   return(
     <>
       <div style={{border:"2px solid blue"}}>
