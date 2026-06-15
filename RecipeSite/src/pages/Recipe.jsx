@@ -2,43 +2,53 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import RecipeCard from "../components/RecipeCard";
 import Spinner from "../components/Spinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 function Recipe() {
-  const [recipe, setRecipe] = useState([]);
   const { recipeId } = useParams();
-  const [error, setError] = useState(false);
-
-  console.log("Recipe:", recipeId);
+  const [recipeState, setRecipeState] = useState({
+    recipe: null,
+    recipeId: "",
+    error: false,
+  });
 
   useEffect(() => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`) //"idMeal": "53147"
+    let ignoreRequest = false;
+
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("API Data:", data);
+        if (ignoreRequest) return;
 
         if (!data.meals) {
-          setError(true);
+          setRecipeState({ recipe: null, recipeId, error: true });
           return;
         }
-        setRecipe(data.meals ? data.meals[0] : null);
-      })
 
+        setRecipeState({ recipe: data.meals[0], recipeId, error: false });
+      })
       .catch((err) => {
         console.error(err);
-        setError(true);
+        if (!ignoreRequest) {
+          setRecipeState({ recipe: null, recipeId, error: true });
+        }
       });
+
+    return () => {
+      ignoreRequest = true;
+    };
   }, [recipeId]);
 
-  if (error) return <ErrorMessage />;
-  if (recipe.length === 0) return <Spinner />; //this won't work?
+  const loading = recipeState.recipeId !== recipeId;
+
+  if (recipeState.error) return <ErrorMessage />;
+  if (loading) return <Spinner />;
 
   return (
-    <>
-      <div style={{ border: "2px solid lightBlue" }}>
-        <h2>How to make {recipe.strMeal}</h2>
-        <RecipeCard></RecipeCard>
-      </div>
-    </>
+    <div style={{ border: "2px solid lightBlue" }}>
+      <h2>How to make {recipeState.recipe.strMeal}</h2>
+      <RecipeCard recipe={recipeState.recipe}></RecipeCard>
+    </div>
   );
 }
 

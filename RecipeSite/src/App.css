@@ -19,3 +19,37 @@
   margin: 0px 20px;
 }
 
+.meal-grid,
+#mealsMenu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.meal-card {
+  border: 1px solid pink;
+  padding: 12px;
+}
+
+.meal-card img {
+  width: 70%;
+  border-radius: 10px;
+}
+
+.favorite-button {
+  margin: 8px 0;
+}
+
+.ingredient-preview,
+.ingredients-list {
+  display: inline-block;
+  text-align: left;
+}
+
+@media (max-width: 800px) {
+  .meal-grid,
+  #mealsMenu,
+  #categoryMenu {
+    grid-template-columns: 1fr;
+  }
+}
