@@ -4,27 +4,27 @@ import { getIngredients } from "../utils/ingredients";
 import { isFavoriteMeal, toggleFavoriteMeal } from "../utils/favorites";
 
 function MealCard({ meal }) {
-  const [fullMeal, setFullMeal] = useState(meal);
+  // const [fullMeal, setFullMeal] = useState(meal);
   const [favorite, setFavorite] = useState(() => isFavoriteMeal(meal.idMeal));
 
-  useEffect(() => {
-    let ignoreRequest = false;
+  // useEffect(() => {
+  //   let ignoreRequest = false;
 
-    if (meal.strIngredient1) return;
+  //   if (meal.strIngredient1) return;
 
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (!ignoreRequest && data.meals) {
-          setFullMeal(data.meals[0]);
-        }
-      })
-      .catch((err) => console.error(err));
+  //   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (!ignoreRequest && data.meals) {
+  //         setFullMeal(data.meals[0]);
+  //       }
+  //     })
+  //     .catch((err) => console.error(err));
 
-    return () => {
-      ignoreRequest = true;
-    };
-  }, [meal]);
+  //   return () => {
+  //     ignoreRequest = true;
+  //   };
+  // }, [meal]);
 
   useEffect(() => {
     const syncFavorite = () => setFavorite(isFavoriteMeal(meal.idMeal));
@@ -33,8 +33,8 @@ function MealCard({ meal }) {
     return () => window.removeEventListener("favoritesUpdated", syncFavorite);
   }, [meal.idMeal]);
 
-  const displayedMeal = meal.strIngredient1 ? meal : fullMeal;
-  const ingredients = getIngredients(displayedMeal).slice(0, 5);
+  // const displayedMeal = meal.strIngredient1 ? meal : fullMeal;
+  // const ingredients = getIngredients(displayedMeal).slice(0, 5);
 
   const handleFavoriteClick = (event) => {
     event.preventDefault();
@@ -55,13 +55,13 @@ function MealCard({ meal }) {
       >
         {favorite ? "★ Favorited" : "☆ Favorite"}
       </button>
-      {ingredients.length > 0 && (
+      {/* {ingredients.length > 0 && (
         <ul className="ingredient-preview">
           {ingredients.map((item) => (
             <li key={item.ingredient}>{item.label}</li>
           ))}
         </ul>
-      )}
+      )} */}
     </article>
   );
 }
