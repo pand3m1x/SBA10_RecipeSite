@@ -38,7 +38,7 @@ function MealCard({ meal }) {
 
   const handleFavoriteClick = (event) => {
     event.preventDefault();
-    setFavorite(toggleFavoriteMeal(displayedMeal));
+    setFavorite(toggleFavoriteMeal(meal));
   };
 
   return (
