@@ -23,7 +23,7 @@ function Favorites() {
   if (loading) return <Spinner />;
 
   return (
-    <div style={{ border: "2px solid blue" }}>
+    <div style={{ backgroundColor: "white" }}>
       <h2>Favorite Recipes</h2>
       {favorites.length === 0 ? (
         <p>No favorites yet. Add some recipes with the favorite button.</p>

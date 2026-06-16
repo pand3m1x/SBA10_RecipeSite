@@ -45,7 +45,7 @@ function Recipe() {
   if (loading) return <Spinner />;
 
   return (
-    <div style={{ border: "2px solid lightBlue" }}>
+    <div style={{ backgroundColor: "white"}}>
       <h2>How to make {recipeState.recipe.strMeal}</h2>
       <RecipeCard recipe={recipeState.recipe}></RecipeCard>
     </div>

@@ -47,7 +47,7 @@ function Category() {
   if (loading) return <Spinner />;
 
   return (
-    <div style={{ border: "2px solid blue" }}>
+    <div style={{ backgroundColor: "white" }}>
       <h2>{categoryName} Recipes</h2>
       <div id="mealsMenu">
         {categoryState.meals.map((meal) => (

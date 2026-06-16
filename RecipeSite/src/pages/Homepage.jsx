@@ -31,7 +31,7 @@ function Homepage() {
   if (categories.length === 0) return <Spinner />;
 
   return (
-    <div style={{ border: "2px solid blue" }}>
+    <div style={{ backgroundColor: "white"}}>
       <h2>Recipe Categories</h2>
       <div
         id="categoryMenu"
@@ -46,7 +46,7 @@ function Homepage() {
             <Link to={`/category/${category.strCategory}`}>
               <div
                 id="individualCategory"
-                style={{ border: "1px solid pink", padding: "4px" }}
+                style={{ padding: "4px" }}
               >
                 <img
                   src={category.strCategoryThumb}
