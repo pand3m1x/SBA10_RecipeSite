@@ -48,7 +48,7 @@ function MealCard({ meal }) {
         <h3>{meal.strMeal}</h3>
       </Link>
       <button
-        className="favorite-button"
+        className="favorite-button bg-yellow-500 hover:bg-cyan-500 text-white font-bold py-2 px-4 rounded"
         type="button"
         onClick={handleFavoriteClick}
         aria-label={favorite ? "Remove from favorites" : "Add to favorites"}

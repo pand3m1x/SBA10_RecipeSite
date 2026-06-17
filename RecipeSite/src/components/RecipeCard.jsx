@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getIngredients } from "../utils/ingredients";
 import { isFavoriteMeal, toggleFavoriteMeal } from "../utils/favorites";
 
+
 function RecipeCard({ recipe }) {
   const [favorite, setFavorite] = useState(() => isFavoriteMeal(recipe.idMeal));
   const ingredients = getIngredients(recipe);
@@ -25,7 +26,7 @@ function RecipeCard({ recipe }) {
         style={{ width: "200px", borderRadius: "10px" }}
       />
       <div>
-        <button type="button" onClick={handleFavoriteClick}>
+        <button type="button" onClick={handleFavoriteClick} className="bg-yellow-500 hover:bg-cyan-500 text-white font-bold py-2 px-4 rounded">
           {favorite ? "★ Remove Favorite" : "☆ Add Favorite"}
         </button>
       </div>
