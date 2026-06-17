@@ -6,10 +6,14 @@ import Category from "./pages/Category";
 import Recipe from "./pages/Recipe";
 import Favorites from "./pages/Favorites";
 import Search from "./pages/Search";
+import logo from "./assets/Yum-with-white-background-circle.svg"
 
 function App() {
   return (
     <>
+      <div className="flex flex-col items-center">
+        <img src={logo} alt="Yum logo" className="w-50 h-auto mb-4"/>
+      </div>
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
